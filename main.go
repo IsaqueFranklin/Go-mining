@@ -110,3 +110,29 @@ func handleWriteBlock(w http.ResponseWriter, r *http.Request) {
         respondWithJSON(w, r, http.StatusCreated, newBlock)
 
 }
+
+//Now we start with the basic blockchain functions.
+
+func isBlockValid(newBlock, oldBlock Block) bool {
+        if oldBlock.Index+1 != newBlock.Index {
+                return false
+        }
+
+        if oldBlock.Hash != newBlock.PrevHash {
+                return false
+        }
+
+        if calculateHash(newBlock) != newBlock.Hash {
+                return false
+        }
+
+        return true
+}
+
+func calculateHash(block Block) string {
+        record := strconv.Itoa(block.Index) + block.Timestamp + strconv.Itoa(block.BPM) + block.PrevHash + block.Nonce
+        h := sha256.New()
+        h.Write([]byte(record))
+        hashed := h.Sum(nil)
+        return hex.EncodeToString(hashed)
+}
