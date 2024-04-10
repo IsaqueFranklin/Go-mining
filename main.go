@@ -162,6 +162,7 @@ func generateBlock(oldBlock Block, BPM int) Block {
       continue
     } else {
       fmt.Println(calculateHash(newBlock), " work done!")
+      newBlock.Hash = calculateHash(newBlock)
       break
     }
   }
