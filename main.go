@@ -19,7 +19,7 @@ import (
   "github.com/joho/godotenv"
 )
 
-const difficulty = 1
+const difficulty = 2
 
 type Block struct {
   Index int
