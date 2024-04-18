@@ -8,7 +8,7 @@ import (
 )
 
 //generateNewBlockWithPow generates a new block in the blockchain using Proof of work.
-func generateNewBlockWithPow(prevBlock Block, data string, difficulty int) Block {
+func generateNewBlockWithPoW(prevBlock Block, data string, difficulty int) Block {
 	var nonce int
 	timestamp := time.Now().Unix()
 	newBlock := Block{
